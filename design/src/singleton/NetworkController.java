@@ -1,5 +1,7 @@
 package singleton;
 
+import sun.nio.ch.Net;
+
 /**
  * Created by jihun.im on 2017-04-21.
  */
@@ -11,9 +13,15 @@ public class NetworkController {
 
     }
 
-    static public NetworkController getInstance() {
+
+    // multi thread application
+    static public NetworkController getInstanceForMultiThreadApplication() {
         if (networkController == null) {
-            networkController = new NetworkController();
+            synchronized (NetworkController.class) {
+                if (networkController == null) {
+                    networkController = new NetworkController();
+                }
+            }
         }
         return networkController;
     }
@@ -21,5 +29,15 @@ public class NetworkController {
     public String getNetworkStatus() {
         return "controller instance id : " + this;
     }
+
+    // single thread application
+    static public NetworkController getInstance() {
+
+        if (networkController == null) {
+            networkController = new NetworkController();
+        }
+        return networkController;
+    }
+
 
 }
