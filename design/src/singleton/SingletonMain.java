@@ -8,6 +8,8 @@ public class SingletonMain {
     public static void main(String[] args) {
         System.out.println("network status : " + NetworkController.getInstance().getNetworkStatus());
         System.out.println("network status : " + NetworkController.getInstance().getNetworkStatus()); //same instance!
+        System.out.println(Singleton.getInstance());
+        System.out.println(BillPughSingleton.getInstance());
     }
 
 }
